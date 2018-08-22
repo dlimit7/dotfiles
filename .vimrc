@@ -1,3 +1,8 @@
+" highlight with mouse then cntrl-c,v,x,z for copy past cut undo
+" control-up,down,left,right to move around the code in insert mode
+" control-p for func completion
+" gg=G for autoindent
+
 set nocompatible            
 filetype on                 
 
@@ -21,7 +26,7 @@ syntax on
 set laststatus=2
 set backspace=indent,eol,start
 
-" Nicen airline
+" Visuals
 let g:airline_powerline_fonts = 1
 let g:airline_theme='dark'
 
