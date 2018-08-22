@@ -1,7 +1,9 @@
 " highlight with mouse then cntrl-c,v,x,z for copy past cut undo
-" control-up,down,left,right to move around the code in insert mode
-" control-p for func completion
+" cntrl-up,down,left,right to move around the code in insert mode
+" cntrl-p for func completion
 " gg=G for autoindent
+" cntrl-e to allow pasting from outside vim. cntrl-w to unset
+" gf to explore and open new vim tabs
 
 set nocompatible            
 filetype on                 
@@ -39,7 +41,8 @@ set shiftwidth=3
 set autoindent " gg=G
 set encoding=utf-8
 set mouse=a
-set paste
+nnoremap <C-e> :set paste<CR>
+nnoremap <C-w> :set nopaste<CR>
 
 " Trailing whitespace highlighting
 "autocmd ColorScheme * highlight ExtraWhitespace ctermbg=blue guibg=blue
