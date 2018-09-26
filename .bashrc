@@ -88,19 +88,17 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" #  is probably faster to type though
+alias -- -="cd -"
+alias vi='vim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -112,3 +110,38 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+
+# Universal extraction function
+function extract {
+ if [ -z "" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+ else
+    if [ -f "" ] ; then
+        NAME=
+        #mkdir Danz && cd Danz
+        case "" in
+          *.tar.bz2)   tar xvjf ./""    ;;
+          *.tar.gz)    tar xvzf ./""    ;;
+          *.tar.xz)    tar xvJf ./""    ;;
+          *.lzma)      unlzma ./""      ;;
+          *.bz2)       bunzip2 ./""     ;;
+          *.rar)       unrar x -ad ./"" ;;
+          *.gz)        gunzip ./""      ;;
+          *.tar)       tar xvf ./""     ;;
+          *.tbz2)      tar xvjf ./""    ;;
+          *.tgz)       tar xvzf ./""    ;;
+          *.zip)       unzip ./""       ;;
+          *.Z)         uncompress ./""  ;;
+          *.7z)        7z x ./""        ;;
+          *.xz)        unxz ./""        ;;
+          *.exe)       cabextract ./""  ;;
+          *)           echo "extract: '' - unknown archive method" ;;
+        esac
+    else
+        echo "'' - file does not exist"
+    fi
+fi
+}
+

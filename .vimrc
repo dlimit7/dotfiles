@@ -36,8 +36,8 @@ let g:airline_theme='dark'
 set t_Co=256
 set nu
 set expandtab
-set tabstop=3
-set shiftwidth=3
+set tabstop=4
+set shiftwidth=4
 set autoindent " gg=G
 set encoding=utf-8
 set mouse=a
@@ -78,10 +78,14 @@ noremap l j
 noremap k h
 
 " Code Movement
-map <C-Up> <Esc>10o<Esc>
-map <C-Down> <Esc>10l<Esc>
-map <C-Left> <Esc>I<Esc>
-map <C-Right> <Esc>A<Esc>
+nmap <C-Up> <Esc>10o<Esc>
+nmap <C-Down> <Esc>10l<Esc>
+nmap <C-Left> <Esc>I<Esc>
+nmap <C-Right> <Esc>A<Esc>
+imap <C-Up> <Esc>10o
+imap <C-Down> <Esc>10l
+imap <C-Left> <Esc>I
+imap <C-Right> <Esc>A<Right>
 
 " Cut, Past, Copy, Undo
 vmap <C-c> y<Esc><Space>
