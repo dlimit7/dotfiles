@@ -42,19 +42,21 @@ let g:molokai_original=1
 colorscheme molokai
 hi Normal ctermbg=none
 
-" Useful macros
-nnoremap <C-k> :tabprevious<CR> 
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-o> :Texplore<CR>
-nnoremap <C-a> :wq<CR>
-
 " Use system clipboard
 set clipboard^=unnamed,unnamedplus
 
 " Autoindent
 filetype plugin indent on
 
+" Useful macros
+
 " Code Movement
+nnoremap <C-k> :tabprevious<CR> 
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-o> :Texplore<CR>
+nnoremap <C-a> :q<CR>
+imap <C-a> <Esc>:q<CR>
+
 map <C-Up> <Esc>10k<Esc>
 map <C-Down> <Esc>10j<Esc>
 map <C-Left> <Esc>I<Esc>
@@ -68,7 +70,7 @@ imap <C-Right> <Esc>A
 vmap <C-c> y<Esc><Space>i
 vmap <C-x> d<Esc><Space>
 nmap <C-v> p<Space>
+nmap <C-z> u<Esc>
 imap <C-v> <Esc>p<Space>i
-nmap <C-z> <Esc>u<Esc>
 imap <C-z> <Esc>u<Space>i
 
