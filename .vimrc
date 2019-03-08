@@ -1,31 +1,25 @@
-" highlight with mouse then cntrl-c,v,x,z for copy past cut undo
-" cntrl-up,down,left,right to move around the code in insert mode
-" cntrl-p for func completion
-" gg=G for autoindent
-" cntrl-e to allow pasting from outside vim. cntrl-w to unset
-" gf to explore and open new vim tabs
-
 set nocompatible            
-filetype on                 
+filetype on  " auto detect type of file edited               
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim " run-time path
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'bling/vim-airline'
-Plugin 'kshenoy/vim-signature'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tomasr/molokai'
-Plugin 'neovimhaskell/haskell-vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'    " Sick airlines
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kshenoy/vim-signature'      " Plugin to toggle, display and navigate marks m<x> m? '<x> m<space>
+Plugin 'tpope/vim-surround'         " xml editing & surround: change cs<prev><new>, delete ds<>, set ys[s,iw]<>
+Plugin 'tpope/vim-repeat'           " Repeat plugin commands using .
+Plugin 'tomasr/molokai'             " Colour Scheme
+Plugin 'neovimhaskell/haskell-vim'  " Syntax highlighing and indentation for Haskell
+Plugin 'tpope/vim-fugitive'         " Git wrapper :G
+Plugin 'airblade/vim-gitgutter'     " shows git diff
 "Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()   
 
 syntax on
-set laststatus=2
+set laststatus=2 " See status line
 set backspace=indent,eol,start
 
 " Visuals
@@ -33,21 +27,14 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='dark'
 
 " Various useful things
-set t_Co=256
-set nu
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set autoindent " gg=G
+set t_Co=256      " 256 colours
+set nu            " show linenum
+set expandtab     " tab == Ctrl-V<Tab>
+set tabstop=4     " 4 space tab
+set shiftwidth=4  
+set autoindent    " gg=G
 set encoding=utf-8
-set mouse=a
-nnoremap <C-e> :set paste<CR>
-nnoremap <C-w> :set nopaste<CR>
-
-" Trailing whitespace highlighting
-"autocmd ColorScheme * highlight ExtraWhitespace ctermbg=blue guibg=blue
-"au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-"au InsertLeave * match ExtraWhitespace /\s\+$/
+set mouse=a       " shift-mouse to copy out of vim, shift-middlebutton to paste into vim
 
 " Colour scheme for transparency
 let g:rehash256=1
@@ -56,15 +43,10 @@ colorscheme molokai
 hi Normal ctermbg=none
 
 " Useful macros
-nnoremap <C-k> :tabprevious<CR>
+nnoremap <C-k> :tabprevious<CR> 
 nnoremap <C-l> :tabnext<CR>
-nmap <A-Left> :wincmd h<CR>
-nmap <A-Right> :wincmd l<CR>
-nnoremap gf :Texplore<CR>
-nnoremap <C-a> :wqa!<CR>
-
-" Use :W to write with sudo privelages if was forgotten
-command W w !sudo tee %
+nnoremap <C-o> :Texplore<CR>
+nnoremap <C-a> :wq<CR>
 
 " Use system clipboard
 set clipboard^=unnamed,unnamedplus
@@ -72,25 +54,21 @@ set clipboard^=unnamed,unnamedplus
 " Autoindent
 filetype plugin indent on
 
-noremap ; l
-noremap o k
-noremap l j
-noremap k h
-
 " Code Movement
-nmap <C-Up> <Esc>10o<Esc>
-nmap <C-Down> <Esc>10l<Esc>
-nmap <C-Left> <Esc>I<Esc>
-nmap <C-Right> <Esc>A<Esc>
-imap <C-Up> <Esc>10o
-imap <C-Down> <Esc>10l
+map <C-Up> <Esc>10k<Esc>
+map <C-Down> <Esc>10j<Esc>
+map <C-Left> <Esc>I<Esc>
+map <C-Right> <Esc>A<Esc>
+imap <C-Up> <Esc>10k<Esc>i
+imap <C-Down> <Esc>10j<Esc>i
 imap <C-Left> <Esc>I
-imap <C-Right> <Esc>A<Right>
+imap <C-Right> <Esc>A
 
 " Cut, Past, Copy, Undo
-vmap <C-c> y<Esc><Space>
+vmap <C-c> y<Esc><Space>i
 vmap <C-x> d<Esc><Space>
 nmap <C-v> p<Space>
-imap <C-v> <Esc>p<Space>
+imap <C-v> <Esc>p<Space>i
 nmap <C-z> <Esc>u<Esc>
+imap <C-z> <Esc>u<Space>i
 
