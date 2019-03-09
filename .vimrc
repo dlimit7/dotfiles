@@ -14,7 +14,7 @@ Plugin 'tomasr/molokai'             " Colour Scheme
 Plugin 'neovimhaskell/haskell-vim'  " Syntax highlighing and indentation for Haskell
 Plugin 'tpope/vim-fugitive'         " Git wrapper :G
 Plugin 'airblade/vim-gitgutter'     " shows git diff
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()   
 
