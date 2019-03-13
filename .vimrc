@@ -25,6 +25,10 @@ set backspace=indent,eol,start
 " Visuals
 let g:airline_powerline_fonts = 1
 let g:airline_theme='dark'
+let g:airline#extensions#tabline#enabled = 1
+
+" YCM config
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 
 " Various useful things
 set t_Co=256      " 256 colours
