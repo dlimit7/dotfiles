@@ -57,7 +57,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]\h \w\[\033[0;32m\]$(__git_ps1)\n\[\033[0;32m\]└\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] >\[\033[0m\] '
+    PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;34m\] @ \[\033[0;34m\]\h \w\[\033[0;32m\]$(__git_ps1)\n\[\033[0;32m\] └\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] >\[\033[0m\] '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -83,6 +83,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+    LS_COLORS=$LS_COLORS:'di=34:ln=1;33:ex=32:fi=2'
+    export LS_COLORS
 fi
 
 # some more ls aliases
@@ -96,6 +98,7 @@ alias .....="cd ../../../.."
 alias ~="cd ~" #  is probably faster to type though
 alias -- -="cd -"
 alias vi='vim'
+alias ssh="ssh z5060030@cse.unsw.edu.au"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -115,29 +118,28 @@ fi
 
 # Universal extraction function
 function extract {
- if [ -z "" ]; then
+ s=$1
+ if [ -z $s ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
  else
-    if [ -f "" ] ; then
-        NAME=
-        #mkdir Danz && cd Danz
-        case "" in
-          *.tar.bz2)   tar xvjf ./""    ;;
-          *.tar.gz)    tar xvzf ./""    ;;
-          *.tar.xz)    tar xvJf ./""    ;;
-          *.lzma)      unlzma ./""      ;;
-          *.bz2)       bunzip2 ./""     ;;
-          *.rar)       unrar x -ad ./"" ;;
-          *.gz)        gunzip ./""      ;;
-          *.tar)       tar xvf ./""     ;;
-          *.tbz2)      tar xvjf ./""    ;;
-          *.tgz)       tar xvzf ./""    ;;
-          *.zip)       unzip ./""       ;;
-          *.Z)         uncompress ./""  ;;
-          *.7z)        7z x ./""        ;;
-          *.xz)        unxz ./""        ;;
-          *.exe)       cabextract ./""  ;;
+    if [ -f $s ] ; then
+        case $s in
+          *.tar.bz2)   tar xvjf $s     ;;
+          *.tar.gz)    tar xvzf $s     ;;
+          *.tar.xz)    tar xvJf $s     ;;
+          *.lzma)      unlzma $s       ;;
+          *.bz2)       bunzip2 $s      ;;
+          *.rar)       unrar x -ad $s  ;;
+          *.gz)        gunzip $s       ;;
+          *.tar)       tar xvf $s      ;;
+          *.tbz2)      tar xvjf $s     ;;
+          *.tgz)       tar xvzf $s     ;;
+          *.zip)       unzip $s        ;;
+          *.Z)         uncompress $s   ;;
+          *.7z)        7z x $s         ;;
+          *.xz)        unxz $s         ;;
+          *.exe)       cabextract $s   ;;
           *)           echo "extract: '' - unknown archive method" ;;
         esac
     else
